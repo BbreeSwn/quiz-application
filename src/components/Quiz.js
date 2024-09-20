@@ -14,7 +14,7 @@ const Quiz = () => {
   }, [selectChoice]);
 
   const checkAnswer = () => {
-    if (selectChoice != "") {
+    if (selectChoice !== "") {
       setUserAnswer([...userAnswer, selectChoice]);
       if (selectChoice === QuestionsData[current].answer) {
         setScore(score + 1);
