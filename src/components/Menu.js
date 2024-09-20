@@ -1,8 +1,14 @@
-import React from 'react'
+import { useContext } from "react"
+import { DataContext } from "../App"
+
 
 const Menu = () => {
+const {setAppState} = useContext(DataContext)
   return (
-    <div>Menu</div>
+    <div className="menu">
+      <h1>Menu</h1>
+      <button onClick={()=>setAppState("quiz")}>Let's start</button>
+      </div>
   )
 }
 
