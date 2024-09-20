@@ -6,7 +6,8 @@ const Quiz = () => {
   //ใช้เก็บลำดับคำถาม
   const [current, setCurrent] = useState(0); //เริ่มต้นที่ 0 คือ ให้เริ่่มคำถามจาก array index0 ใน data
   const [selectChoice, setSelectChoice] = useState("");
-  const { score, setScore , setAppState } = useContext(DataContext);
+  const { score, setScore, setAppState, userAnswer, setUserAnswer } =
+    useContext(DataContext);
 
   useEffect(() => {
     checkAnswer();
@@ -14,24 +15,25 @@ const Quiz = () => {
 
   const checkAnswer = () => {
     if (selectChoice != "") {
+      setUserAnswer([...userAnswer, selectChoice]);
       if (selectChoice === QuestionsData[current].answer) {
-        setScore(score+1)
-        nextQuestion()
+        setScore(score + 1);
+        nextQuestion();
       } else {
-        nextQuestion()
+        nextQuestion();
       }
     }
   };
 
   const nextQuestion = () => {
     //ก่อนไปคำถามถัดไป ให้เคลีย choice ก่่อน
-    setSelectChoice("")
+    setSelectChoice("");
     //เช็คคำถามว่าถึงข้อสุดท้ายหรือยัง
-    if(current === QuestionsData.length-1){
-      setAppState("score")
+    if (current === QuestionsData.length - 1) {
+      setAppState("score");
     }
-    setCurrent(current+1)
-  }
+    setCurrent(current + 1);
+  };
 
   return (
     <div className="quiz">
